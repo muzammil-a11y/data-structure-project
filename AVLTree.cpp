@@ -55,7 +55,6 @@ AVLNode* CourseAVLTree::rotateRightleft(AVLNode* x){
 }
 
 AVLNode* CourseAVLTree::insertNode(AVLNode* node, CourseOffering* offering) {
-    // 1. Base case: naya node banayein
     if (node == nullptr) {
         return new AVLNode(offering);
     }
@@ -71,28 +70,24 @@ AVLNode* CourseAVLTree::insertNode(AVLNode* node, CourseOffering* offering) {
         node->setRight(insertNode(node->getRight(), offering));
     }
     else {
-        return node; 
+        return node;
     }
 
-    
+
     node->setHeight(maxVal(getHeight(node->getLeft()), getHeight(node->getRight())) + 1);
 
-    
+
     int balancef = getBalance(node);
 
-    // LL Case
     if (balancef > 1 && getBalance(node->getLeft()) >= 0) {
         return rotateRight(node);
     }
-    // LR Case
     else if (balancef > 1 && getBalance(node->getLeft()) < 0) {
         return rotateLeftright(node);
     }
-    // RR Case
     else if (balancef < -1 && getBalance(node->getRight()) <= 0) {
         return rotateLeft(node);
     }
-    // RL Case
     else if (balancef < -1 && getBalance(node->getRight()) > 0) {
         return rotateRightleft(node);
     }
@@ -119,7 +114,7 @@ void CourseAVLTree::destroyTree(AVLNode* node) {
     if (node == nullptr) return;
     destroyTree(node->getLeft());
     destroyTree(node->getRight());
-    delete node; 
+    delete node;
 }
 
 void CourseAVLTree::insert(CourseOffering* offering) {
