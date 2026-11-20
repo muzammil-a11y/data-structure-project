@@ -172,7 +172,13 @@ void DataManager::linkData(){
         }
 
         if(sections.size() > 0){
-            c->section = &sections.get(0);
+            c->section = nullptr;
+            for(int i=0; i<sections.size(); i++){
+                if(sections.get(i).sectionID == c->sectionID){
+                    c->section = &sections.get(i);
+                    break;
+                }
+            }
         }
         else{
             c->section = nullptr;

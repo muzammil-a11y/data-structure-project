@@ -93,6 +93,7 @@ class CourseOffering{
         int creditHours;
         int teacherID;
         int roomID;
+        int sectionID = 1;  
         Teacher* teacher = nullptr;
         Section* section = nullptr;
         bool isLab = false;
