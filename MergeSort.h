@@ -1,6 +1,7 @@
 #ifndef MERGESORT_H
 #define MERGESORT_H
 
+#include "Models.h" // changed: added, ScheduleEntry and ScheduleArray come from here
 #include "DynamicArray.h"
 
 class MergeSort {

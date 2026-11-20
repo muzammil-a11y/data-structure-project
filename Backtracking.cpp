@@ -3,7 +3,6 @@
 
 bool Backtracking::solve(CourseArray& lectureList, int index,
                          RoomArray& rooms, ScheduleStack& stack) {
-    // Base case: saare lectures schedule ho gaye
     if (index == lectureList.size()) {
         return true;
     }
@@ -22,7 +21,6 @@ bool Backtracking::solve(CourseArray& lectureList, int index,
                 Room* room = rooms.get(r);
 
                 if (constraints.isValidSlot(currentCourse, room, day, slot)) {
-                    // 1. Assign + Push
                     room->setBusy(day, slot, true);
                     teacher->setBusy(day, slot, true);
                     section->setBusy(day, slot, true);
@@ -30,12 +28,10 @@ bool Backtracking::solve(CourseArray& lectureList, int index,
                     ScheduleEntry entry(currentCourse, room, day, slot);
                     stack.push(entry);
 
-                    
                     if (solve(lectureList, index + 1, rooms, stack)) {
                         return true;
                     }
 
-                    
                     stack.pop();
                     room->setBusy(day, slot, false);
                     teacher->setBusy(day, slot, false);
@@ -60,7 +56,6 @@ bool Backtracking::generateTimetable(DataManager& dm) {
         return false;
     }
 
-    // Seedha CourseArray use karein — koi double pointer ya delete[] nahi!
     CourseArray lectureList;
     for (int i = 0; i < courses.size(); i++) {
         CourseOffering* c = courses.get(i);
